@@ -1,0 +1,19 @@
+name: docs
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+  - plotly
+  - matplotlib
+  - numpy
+  - scipy
+  - jupyterlab
+  - rdkit
+  - scikit-learn
+  - pydata-sphinx-theme
+  - sphinx-design
+  - sphinx-copybutton
+  - myst-parser
+  - sphinx-togglebutton

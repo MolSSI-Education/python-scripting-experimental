@@ -1,4 +1,4 @@
-name: docs
+name: docs-2
 channels:
   - conda-forge
   - defaults
@@ -18,5 +18,5 @@ dependencies:
   - myst-parser
   - sphinx-togglebutton
   - pip
-  pip:
+  - pip:
     - myst-nb

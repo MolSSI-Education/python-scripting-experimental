@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Introduction to Python &#8212; python-scripting-chemists  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/python-basics';</script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../_static/molssi_square.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to Pandas" href="pandas.html" />
+    <link rel="prev" title="Python Scripting for Experimental Chemists" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Python for Chemists</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Introduction to Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="pandas.html">
+                        Introduction to Pandas
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="visualization.html">
+                        Interactive Visualization with Plotly
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="linear_fitting.html">
+                        Linear Fitting
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="xps_processing.html">
+                        Case Study - X-ray Photoelectron Spectroscopy (XPS)
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Introduction to Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="pandas.html">
+                        Introduction to Pandas
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="visualization.html">
+                        Interactive Visualization with Plotly
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="linear_fitting.html">
+                        Linear Fitting
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="xps_processing.html">
+                        Case Study - X-ray Photoelectron Spectroscopy (XPS)
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Introduction...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-python">
+<h1>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this heading">#</a></h1>
+<div class="overview admonition">
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>What is the Python programming language, and what is it used for?</p></li>
+<li><p>What are the advantages and disadvantages of using Python?</p></li>
+<li><p>What is a Jupyter notebook?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Describe the Python programming language and its uses.</p></li>
+<li><p>Learn the basics of the Jupyter notebook.</p></li>
+</ul>
+</div>
+<section id="what-is-python-and-why-use-it">
+<h2>What is Python and why use it?<a class="headerlink" href="#what-is-python-and-why-use-it" title="Permalink to this heading">#</a></h2>
+<p>All of the software you use on a regular basis is created through the use of programming languages.
+Programming languages allow us to write instructions to a computer.
+There are many different programming languages, each with their own strengths, weaknesses, and uses.
+Some popular programming languages you might hear about are Javascript (used on the web - any website with interactive content likely uses javascript), Python (scientific programming and many other applications), C++ (high performance applications), SQL (databases), and many more.</p>
+<p>Python is a computer programming language that has become ubiquitous in scientific programming.
+The Python programming language was first introduced in the year 1991, and has grown to be one of the most popular programming languages for both scientists and non-scientists.
+According to the <a class="reference external" href="https://survey.stackoverflow.co/2022/#most-popular-technologies-language-prof">2022 Stack Overflow Developer Survey</a>, Python is the fourth most popular programming language.
+Compared to other programming languages, Python is considered more intutitive to start learning and is also extremely versatile.
+Notably, in contrast to some other languages commonly used in scientific programming, Python is <strong>free and open-source</strong>.
+This means anyone can download, install, and use Python.
+Python can be used to build web applications, interact with databases, and and to analyze data.</p>
+</section>
+<section id="python-in-science">
+<h2>Python in Science<a class="headerlink" href="#python-in-science" title="Permalink to this heading">#</a></h2>
+<p>Python is used in many different scientific fields, including chemistry, physics, biology, and astronomy.
+Python is used in scientific programming for a variety of reasons, including:</p>
+<ul class="simple">
+<li><p>Python is free and open-source.</p></li>
+<li><p>Python is easy to learn (compared to compiled programming languages like C++).</p></li>
+<li><p>Python has a large community of users and developers.</p></li>
+</ul>
+<p>The Scientific Python ecosystem is a set of packages commonly used for scientific applications.
+These packages are the foundation of scientific Python programming across a range of disciplines and include
+NumPy, SciPy, Matplotlib, and Pandas.
+In our workshop today, we will explore the basics of these foundational libraries.</p>
+<p>In chemistry specifically, there are a number of specialized libraries used for processing or analyzing chemical data.
+For example, there are many libraries for reading and writing chemical file formats, such as the <a class="reference external" href="http://openbabel.org/wiki/Main_Page">Open Babel</a> library. There are also libraries for cheminformatics, like RDKit, and libraries for quantum chemistry, like Psi4.
+For experimental chemists, there are libraries for <a class="reference external" href="https://github.com/jjhelmus/nmrglue">working with and analyzing NMR spectra</a>.</p>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h2>
+<p>Our initial lessons will run python interactively through a Python interpreter.
+We will use an environment called a Jupyter notebook.
+The Jupyter notebook is an environment in your browser that can be used to write an execute Python code interactively.
+You can view a Jupyter notebook using your browser or in some specialized text editors.</p>
+<p>Jupyter notebooks are made up of cells. Cells can either be markdown (text) or code cells.
+This cell is a Markdown Cell.
+Code cells have executable Python code in them.
+To change the type of a cell you can use the drop down option in the top window.
+To run code in a cell, click inside of the cell and press <code class="docutils literal notranslate"><span class="pre">Shift+Enter</span></code>.
+If the code executes successfully, the next cell will become the active cell.</p>
+<p>Markdown is a text markup language that Jupyter formats into nice looking text.
+In markdown, for example, a first level heading is denoted by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Heading</span>
+</pre></div>
+</div>
+<p>Double click inside this cell to see what the markdown cell looks like!
+Try adding some subheadings (<code class="docutils literal notranslate"><span class="pre">##</span></code>) or bullet points yourself!</p>
+</section>
+<section id="our-first-python-code">
+<h2>Our First Python Code<a class="headerlink" href="#our-first-python-code" title="Permalink to this heading">#</a></h2>
+<p>Any Python interpreter can work just like a calculator.
+This is not very useful.
+Press the Shift Key and the Enter Key (<code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code>) at the same time to run (also called “execute”) the code in a cell.
+The following cell contains an expression to calculate <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">+</span> <span class="pre">7</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="assigning-variables">
+<h2>Assigning variables<a class="headerlink" href="#assigning-variables" title="Permalink to this heading">#</a></h2>
+<p>Python can perform calculations for us.
+To save this value, or other values, we assign them to a variable for later use.
+Variable <strong>assignment</strong> is the technical term for doing this.
+If we do not assign an expression to a variable, we will not be able to use its value later.</p>
+<p>The syntax for assigning variables is the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">variable_name</span> <span class="o">=</span> <span class="n">varaible_value</span>
+</pre></div>
+</div>
+<p>Let’s see this in action with a calculation.
+Let’s define some variables for our calculation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deltaH</span> <span class="o">=</span> <span class="o">-</span><span class="mf">541.5</span>   <span class="c1"># kJ/mole</span>
+<span class="n">deltaS</span> <span class="o">=</span>  <span class="mf">10.4</span>     <span class="c1"># kJ/(mole K)</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="mi">298</span>      <span class="c1"># Kelvin</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice several things about this code.
+The text after <code class="docutils literal notranslate"><span class="pre">#</span></code> are comments.
+The computer does not do anything with these comments.
+They have been used here to remind the user what units each of their values are in.
+Comments are also often used to explain what the code is doing or leave information for future people who might use the code.</p>
+<p>When choosing variable names, you should choose informative names so that someone reading your code can tell what they represent. Naming a variable temp or temperature is much more informative than naming that variable t.</p>
+<p>We can now access any of the variables from other cells. Let’s calculate something using our defined variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deltaG</span> <span class="o">=</span> <span class="n">deltaH</span> <span class="o">-</span> <span class="n">temp</span> <span class="o">*</span> <span class="n">deltaS</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3640.7000000000003
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="jupyterlab-the-tab-key">
+<h2>JupyterLab: The <code class="docutils literal notranslate"><span class="pre">tab</span></code> key<a class="headerlink" href="#jupyterlab-the-tab-key" title="Permalink to this heading">#</a></h2>
+<p>Jupyter notebooks allow autocomplete using the tab key.
+To test this out, try typing <code class="docutils literal notranslate"><span class="pre">pri</span></code> in the cell below, then press <code class="docutils literal notranslate"><span class="pre">tab</span></code> on your keyboard twice.
+You should see that the word <code class="docutils literal notranslate"><span class="pre">print</span></code> is completed for you.</p>
+<p>After you have the word <code class="docutils literal notranslate"><span class="pre">print</span></code> add a parenthesis, then start typing <code class="docutils literal notranslate"><span class="pre">delt</span></code> and press <code class="docutils literal notranslate"><span class="pre">tab</span></code> twice again.
+You will see a list of potential variables or functions you might want to use.
+You can use the arrows + the Enter key to select the variable you would like to use.</p>
+</section>
+<section id="using-functions">
+<h2>Using Functions<a class="headerlink" href="#using-functions" title="Permalink to this heading">#</a></h2>
+<p>When we use <code class="docutils literal notranslate"><span class="pre">print</span></code>, we are using a <code class="docutils literal notranslate"><span class="pre">function</span></code>.
+Functions are reusable pieces of code that perform certain tasks.
+Examples include printing, opening files, performing a calculations, and many others.
+Functions have a name that is followed by parenthesis containing the function inputs separated by commas (also called <em>arguments</em>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">function_name</span><span class="p">(</span><span class="n">argument1</span><span class="p">,</span> <span class="n">argument2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the previous code block, we introduced the <code class="docutils literal notranslate"><span class="pre">print</span></code> function. Often, we will use the print function just to make sure our code is working correctly.</p>
+</section>
+<section id="overwriting-variables">
+<h2>Overwriting Variables<a class="headerlink" href="#overwriting-variables" title="Permalink to this heading">#</a></h2>
+<p>Note that if you do not specify a new name for a variable, then it doesn’t automatically change the value of the variable. For example if we typed</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+<span class="n">deltaG</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3640.7000000000003
+-3640.7000000000003
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nothing happened to the value of deltaG. If we wanted to change the value of deltaG we would have to re-save the variable using the same name to overwrite the existing value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+<span class="n">deltaG</span> <span class="o">=</span> <span class="n">deltaG</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3640.7000000000003
+-3640700.0000000005
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are situations where it is reasonable to overwrite a variable with a new value, but you should always think carefully about this. Usually it is a better practice to give the variable a new name and leave the existing variable as is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+<span class="n">deltaG_joules</span> <span class="o">=</span> <span class="n">deltaG</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deltaG_joules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3640700.0000000005
+-3640700.0000000005
+-3640700000.0000005
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-types">
+<h2>Data Types<a class="headerlink" href="#data-types" title="Permalink to this heading">#</a></h2>
+<p>Each variable is some particular type of data.
+The most common types of data are strings (str),
+integers (int), and floating point numbers (float).
+You can identify the data type of any variable with the function <code class="docutils literal notranslate"><span class="pre">type(variable_name)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can change the data type of a variable like this. This is called casting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deltaG_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">deltaG</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">deltaG_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could have created a variable as a string originally by surrounding the value in quotes <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>. It doesn’t matter if you use single or double quotes, the first quote just has to match the closing quote.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string_variable</span> <span class="o">=</span> <span class="s2">&quot;This is a string&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">string_variable</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lists">
+<h2>Lists<a class="headerlink" href="#lists" title="Permalink to this heading">#</a></h2>
+<p>Another common data structure in Python is the list. Lists can be used to group several values or variables together.
+For today’s workshop, we will be using a more complicated data structure that is part of the pandas library.
+However, they share many attributes with lists.
+Lists are a default data type in Python - meaning they are always available no matter what libraries you are using.</p>
+<p>You can visualize a list using the illustration below.
+In our picture, our list has 6 elements.
+<strong>Notably for Python, when counting elements in a list, you start at 0.</strong></p>
+<p><img alt="list_index" src="../_images/list_index.png" /></p>
+<p>Lists are created by adding square brackets around a value or variable.
+List elements are separated by commas.
+Python has several built in functions which can be used on lists.
+The built-in function <code class="docutils literal notranslate"><span class="pre">len</span></code> can be used to determine the length of a list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a list</span>
+<span class="n">energy_kcal</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">13.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">42.1</span><span class="p">]</span>
+
+<span class="c1"># I can determine its length</span>
+<span class="n">energy_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">energy_kcal</span><span class="p">)</span>
+
+<span class="c1"># I can determine its max</span>
+<span class="n">max_energy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">energy_kcal</span><span class="p">)</span>
+
+<span class="c1"># print calculated values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The length of this list is&#39;</span><span class="p">,</span> <span class="n">energy_length</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The maximum of the energy values is&#39;</span><span class="p">,</span> <span class="n">max_energy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The length of this list is 4
+The maximum of the energy values is 42.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>To operate on a particular element of the list, you use the list name and then put in brackets which element of the list you want. In Python counting starts at zero. So the first element of the list is <code class="docutils literal notranslate"><span class="pre">list[0]</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the first element of the list</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">energy_kcal</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-13.4
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can use an element of a list as a variable in a calculation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the second list element to kilojoules.</span>
+<span class="n">energy_kilojoules</span> <span class="o">=</span> <span class="n">energy_kcal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">4.184</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">energy_kilojoules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-11.296800000000001
+</pre></div>
+</div>
+</div>
+</div>
+<section id="slices">
+<h3>Slices<a class="headerlink" href="#slices" title="Permalink to this heading">#</a></h3>
+<p>Sometimes you will want to make a new list that is a subset of an existing list. For example, we might want to make a new list that is just the first few elements of our previous list. This is called a slice. The general syntax is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="n">list_name</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>When taking a slice, it is very important to remember how counting works in python. Remember that counting starts at zero so the first element of a list is <code class="docutils literal notranslate"><span class="pre">list_name[0]</span></code>. When you specify the last element for the slice, it goes <em>up to but not including</em> that element of the list. So a slice like</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">short_list</span> <span class="o">=</span> <span class="n">energy_kcal</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>includes energy_kcal[0] and energy_kcal[1] but not energy_kcal[2].</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">short_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-13.4, -2.7]
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you do not include a start index, the slice automatically starts at list_name[0]. If you do not include an end index, the slice automatically goes to the end of the list.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Check Your Understanding</p>
+<p>What does the following code block print?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">slice1</span> <span class="o">=</span> <span class="n">energy_kcal</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">slice2</span> <span class="o">=</span> <span class="n">energy_kcal</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;slice1 is&#39;</span><span class="p">,</span> <span class="n">slice1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;slice2 is&#39;</span><span class="p">,</span> <span class="n">slice2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See if you can predict the output, then check yourself in your notebook.</p>
+</div>
+<p>There is a lot more to basic Python, but for the purpose of this workshop, we are going to skip many of the fundamentals so that we can dive into analyzing chemical data.
+If you’d like to learn more about basic Python, we recommend completing MolSSI’s <a class="reference external" href="https://education.molssi.org/python_scripting_cms/01-introduction/index.html">Introduction to Python lesson</a>.
+It contains much of what is contained here, plus more details on fundamental programming concepts like loops and logic.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python Scripting for Experimental Chemists</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pandas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to Pandas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-python-and-why-use-it">What is Python and why use it?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-in-science">Python in Science</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-first-python-code">Our First Python Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-variables">Assigning variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab-the-tab-key">JupyterLab: The <code class="docutils literal notranslate"><span class="pre">tab</span></code> key</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-functions">Using Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overwriting-variables">Overwriting Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slices">Slices</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/notebooks/python-basics.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="../_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="../_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="../_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1839 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Introduction to Pandas &#8212; python-scripting-chemists  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/pandas';</script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../_static/molssi_square.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interactive Visualization with Plotly" href="visualization.html" />
+    <link rel="prev" title="Introduction to Python" href="python-basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/molssi_main_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Python for Chemists</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="python-basics.html">
+                        Introduction to Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Introduction to Pandas
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="visualization.html">
+                        Interactive Visualization with Plotly
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="linear_fitting.html">
+                        Linear Fitting
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="xps_processing.html">
+                        Case Study - X-ray Photoelectron Spectroscopy (XPS)
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="python-basics.html">
+                        Introduction to Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Introduction to Pandas
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="visualization.html">
+                        Interactive Visualization with Plotly
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="linear_fitting.html">
+                        Linear Fitting
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="xps_processing.html">
+                        Case Study - X-ray Photoelectron Spectroscopy (XPS)
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Introduction...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-pandas">
+<h1>Introduction to Pandas<a class="headerlink" href="#introduction-to-pandas" title="Permalink to this heading">#</a></h1>
+<div class="overview admonition"> 
+<p class="admonition-title">Overview</p>
+<p>Questions:</p>
+<ul class="simple">
+<li><p>How do I import a library?</p></li>
+<li><p>How do I analyze tabular data using Python?</p></li>
+</ul>
+<p>Objectives:</p>
+<ul class="simple">
+<li><p>Use pandas to examine and analyze data.</p></li>
+</ul>
+</div>
+<p>Pandas is another Python package which is very popular for data analysis. The key data type of pandas is the <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>. In this lesson, we will cover pandas dataframes and some basic analysis.</p>
+<p>Pandas is capable of handling data of lots of different types.
+In fact, it is often used to work with data that would usually be in a spreadsheet.
+It is designed to make working with “relational” or “labeled” data easy and intuitive.
+Central to the pandas package are the special data structures called pandas Series and DataFrames. Pandas dataframes are 2 dimensional and tabular, and is particularly suited to data which is heterogenous and in columns.
+In fact, there are even functions which allow you to read data directly from excel spreadsheets or SQL databases.</p>
+<section id="importing-libraries">
+<h2>Importing Libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this heading">#</a></h2>
+<p>For this notebook, we will be reading and analyzing data using <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.
+These are not part of standard Python, and we must import the package to use it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, if we want to use functions from <code class="docutils literal notranslate"><span class="pre">plotly</span></code> or <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, we will do <code class="docutils literal notranslate"><span class="pre">pd.function_name</span></code> or <code class="docutils literal notranslate"><span class="pre">px.function_name</span></code></p>
+<p>In this notebook, we will be working with a data set that contains information about the elements in the periodic table.
+The data is a csv (comma separated value) file from PubChem in your data folder called <code class="docutils literal notranslate"><span class="pre">PubChemElements_all.csv</span></code>.</p>
+<p>This is a comma-separated value file, and we will use the pandas function <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>. You can read more about this function in your Jupyter by typing <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> in the cell below, then right clicking and choosing “Show Contextual Help”.</p>
+<div class="tip admonition"> 
+<p class="admonition-title">Python Documentation</p>
+Most popular Python libraries have very good online documentation. 
+You can find the pandas documentation by googling "pandas docs".
+You will be able to find the same help message you get for `read_csv` as well as tutorials and other types of documentation.
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/">Pandas Documentation</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code class="docutils literal notranslate"><span class="pre">read_csv</span></code> documentation</a></p></li>
+</ol>
+</div>
+<p>It is common to name the variable from the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function <code class="docutils literal notranslate"><span class="pre">df</span></code>. This is short for <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.
+Since this file is relatively simple, we do not need any additional arguments to the function. The <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function reads in tabular data which is comma delimited by default.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/PubChemElements_all.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="examining-the-data">
+<h2>Examining the data<a class="headerlink" href="#examining-the-data" title="Permalink to this heading">#</a></h2>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">df</span></code> is now a pandas DataFrame with the information contained in the csv file. You can examine the DataFrame using the <code class="docutils literal notranslate"><span class="pre">.head()</span></code> method.
+This shows the first 5 rows stored in the DataFrame.
+The first row of the file was used for column headers.</p>
+<div class="tip admonition"> 
+<p class="admonition-title">Methods vs Functions</p>
+In this lesson, we use the syntax `variable.SOMETHING` often.
+When we do this, we are accessing special information or functions that act on variables. If the syntax is `variable.SOMETHING()`, with parenthesis it is a "method", or function that acts on the variable. For example, if variable is a list, you might use the method variable.append(item) to add an item to the end of the list.
+<p>If it doesn’t have parenthesis, it is an “attribute” or data associated with the variable.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AtomicNumber</th>
+      <th>Symbol</th>
+      <th>Name</th>
+      <th>AtomicMass</th>
+      <th>CPKHexColor</th>
+      <th>ElectronConfiguration</th>
+      <th>Electronegativity</th>
+      <th>AtomicRadius</th>
+      <th>IonizationEnergy</th>
+      <th>ElectronAffinity</th>
+      <th>OxidationStates</th>
+      <th>StandardState</th>
+      <th>MeltingPoint</th>
+      <th>BoilingPoint</th>
+      <th>Density</th>
+      <th>GroupBlock</th>
+      <th>YearDiscovered</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>H</td>
+      <td>Hydrogen</td>
+      <td>1.008000</td>
+      <td>FFFFFF</td>
+      <td>1s1</td>
+      <td>2.20</td>
+      <td>120.0</td>
+      <td>13.598</td>
+      <td>0.754</td>
+      <td>+1, -1</td>
+      <td>Gas</td>
+      <td>13.81</td>
+      <td>20.28</td>
+      <td>0.000090</td>
+      <td>Nonmetal</td>
+      <td>1766</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>He</td>
+      <td>Helium</td>
+      <td>4.002600</td>
+      <td>D9FFFF</td>
+      <td>1s2</td>
+      <td>NaN</td>
+      <td>140.0</td>
+      <td>24.587</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>Gas</td>
+      <td>0.95</td>
+      <td>4.22</td>
+      <td>0.000179</td>
+      <td>Noble gas</td>
+      <td>1868</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Li</td>
+      <td>Lithium</td>
+      <td>7.000000</td>
+      <td>CC80FF</td>
+      <td>[He]2s1</td>
+      <td>0.98</td>
+      <td>182.0</td>
+      <td>5.392</td>
+      <td>0.618</td>
+      <td>+1</td>
+      <td>Solid</td>
+      <td>453.65</td>
+      <td>1615.00</td>
+      <td>0.534000</td>
+      <td>Alkali metal</td>
+      <td>1817</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Be</td>
+      <td>Beryllium</td>
+      <td>9.012183</td>
+      <td>C2FF00</td>
+      <td>[He]2s2</td>
+      <td>1.57</td>
+      <td>153.0</td>
+      <td>9.323</td>
+      <td>NaN</td>
+      <td>+2</td>
+      <td>Solid</td>
+      <td>1560.00</td>
+      <td>2744.00</td>
+      <td>1.850000</td>
+      <td>Alkaline earth metal</td>
+      <td>1798</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>B</td>
+      <td>Boron</td>
+      <td>10.810000</td>
+      <td>FFB5B5</td>
+      <td>[He]2s2 2p1</td>
+      <td>2.04</td>
+      <td>192.0</td>
+      <td>8.298</td>
+      <td>0.277</td>
+      <td>+3</td>
+      <td>Solid</td>
+      <td>2348.00</td>
+      <td>4273.00</td>
+      <td>2.370000</td>
+      <td>Metalloid</td>
+      <td>1808</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.info</span></code> function will give information about the columns and the data type of those columns. The data type will become very important later as we work with more data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 118 entries, 0 to 117
+Data columns (total 17 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   AtomicNumber           118 non-null    int64  
+ 1   Symbol                 118 non-null    object 
+ 2   Name                   118 non-null    object 
+ 3   AtomicMass             118 non-null    float64
+ 4   CPKHexColor            108 non-null    object 
+ 5   ElectronConfiguration  118 non-null    object 
+ 6   Electronegativity      95 non-null     float64
+ 7   AtomicRadius           113 non-null    float64
+ 8   IonizationEnergy       102 non-null    float64
+ 9   ElectronAffinity       57 non-null     float64
+ 10  OxidationStates        103 non-null    object 
+ 11  StandardState          118 non-null    object 
+ 12  MeltingPoint           103 non-null    float64
+ 13  BoilingPoint           93 non-null     float64
+ 14  Density                96 non-null     float64
+ 15  GroupBlock             118 non-null    object 
+ 16  YearDiscovered         118 non-null    object 
+dtypes: float64(8), int64(1), object(8)
+memory usage: 15.8+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>This output will show information about each column of data.
+Pandas assigns data types to columns, and will do its best to decide the data column for each column based on what is in the column.
+We can also see how many values are in each column.</p>
+<p>We can also see descriptive statisics easily using the <code class="docutils literal notranslate"><span class="pre">.describe()</span></code> command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AtomicNumber</th>
+      <th>AtomicMass</th>
+      <th>Electronegativity</th>
+      <th>AtomicRadius</th>
+      <th>IonizationEnergy</th>
+      <th>ElectronAffinity</th>
+      <th>MeltingPoint</th>
+      <th>BoilingPoint</th>
+      <th>Density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>118.000000</td>
+      <td>118.000000</td>
+      <td>95.000000</td>
+      <td>113.000000</td>
+      <td>102.000000</td>
+      <td>57.000000</td>
+      <td>103.000000</td>
+      <td>93.000000</td>
+      <td>96.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>59.500000</td>
+      <td>146.607635</td>
+      <td>1.732316</td>
+      <td>201.902655</td>
+      <td>7.997255</td>
+      <td>1.072140</td>
+      <td>1273.740553</td>
+      <td>2536.212473</td>
+      <td>7.608001</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>34.207699</td>
+      <td>89.845304</td>
+      <td>0.635187</td>
+      <td>42.025707</td>
+      <td>3.339066</td>
+      <td>0.879163</td>
+      <td>888.853859</td>
+      <td>1588.410919</td>
+      <td>5.878692</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>1.008000</td>
+      <td>0.700000</td>
+      <td>120.000000</td>
+      <td>3.894000</td>
+      <td>0.079000</td>
+      <td>0.950000</td>
+      <td>4.220000</td>
+      <td>0.000090</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>30.250000</td>
+      <td>66.480000</td>
+      <td>1.290000</td>
+      <td>180.000000</td>
+      <td>6.020500</td>
+      <td>0.470000</td>
+      <td>516.040000</td>
+      <td>1180.000000</td>
+      <td>2.572500</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>59.500000</td>
+      <td>142.573850</td>
+      <td>1.620000</td>
+      <td>202.000000</td>
+      <td>6.960000</td>
+      <td>0.754000</td>
+      <td>1191.000000</td>
+      <td>2792.000000</td>
+      <td>7.072000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>88.750000</td>
+      <td>226.777165</td>
+      <td>2.170000</td>
+      <td>229.000000</td>
+      <td>8.998500</td>
+      <td>1.350000</td>
+      <td>1806.500000</td>
+      <td>3618.000000</td>
+      <td>10.275250</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>118.000000</td>
+      <td>294.214000</td>
+      <td>3.980000</td>
+      <td>348.000000</td>
+      <td>24.587000</td>
+      <td>3.617000</td>
+      <td>3823.000000</td>
+      <td>5869.000000</td>
+      <td>22.570000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The describe function lists the <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, standard deviation and percentiles for each column excluding <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number) values.</p>
+</section>
+<section id="accessing-data-in-dataframes">
+<h2>Accessing Data in DataFrames<a class="headerlink" href="#accessing-data-in-dataframes" title="Permalink to this heading">#</a></h2>
+<p>One way to get information in a data frame is by using the headers, or the column names using squre brackets. The synatx for this is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataframe</span><span class="p">[</span><span class="s2">&quot;column_name&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>For example, to get the column with information about the atomic symbol, we would use the “Symbol” column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Symbol&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       H
+1      He
+2      Li
+3      Be
+4       B
+       ..
+113    Fl
+114    Mc
+115    Lv
+116    Ts
+117    Og
+Name: Symbol, Length: 118, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to select multiple columns, you use a list of column names in square brackets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Symbol&quot;</span><span class="p">,</span> <span class="s2">&quot;AtomicNumber&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Symbol</th>
+      <th>AtomicNumber</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>H</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>He</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Li</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Be</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>B</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>Fl</td>
+      <td>114</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>Mc</td>
+      <td>115</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>Lv</td>
+      <td>116</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>Ts</td>
+      <td>117</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>Og</td>
+      <td>118</td>
+    </tr>
+  </tbody>
+</table>
+<p>118 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="get-data-using-number-index">
+<h2>Get data using number index<a class="headerlink" href="#get-data-using-number-index" title="Permalink to this heading">#</a></h2>
+<p>If we want to get information in the dataframe using row and column numbers, we use the <code class="docutils literal notranslate"><span class="pre">iloc</span></code> function.</p>
+<p>The syntax for <code class="docutils literal notranslate"><span class="pre">iloc</span></code> is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataframe</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">row_number</span><span class="p">,</span> <span class="n">column_number</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If you specify only a row number, you will get all the columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will get the first row, all of the columns.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AtomicNumber                    1
+Symbol                          H
+Name                     Hydrogen
+AtomicMass                  1.008
+CPKHexColor                FFFFFF
+ElectronConfiguration         1s1
+Electronegativity             2.2
+AtomicRadius                120.0
+IonizationEnergy           13.598
+ElectronAffinity            0.754
+OxidationStates            +1, -1
+StandardState                 Gas
+MeltingPoint                13.81
+BoilingPoint                20.28
+Density                   0.00009
+GroupBlock               Nonmetal
+YearDiscovered               1766
+Name: 0, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will get the first row and the second column.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;H&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>How would you get the <code class="docutils literal notranslate"><span class="pre">ElectronConfiguration</span></code> column?</p>
+<p>How would you get the value in row index 10 of the <code class="docutils literal notranslate"><span class="pre">ElectronConfiguration</span></code> column?</p>
+</div></section>
+<section id="performing-calculations">
+<h2>Performing Calculations<a class="headerlink" href="#performing-calculations" title="Permalink to this heading">#</a></h2>
+<p>You can do mathematical operations on entire columns  or rows of <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframes using single lines of code.
+For example, if we wanted to subtract 273.15 from our melting point column, we could do so with the following like of code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;MeltingPoint&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mf">273.15</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      -259.34
+1      -272.20
+2       180.50
+3      1286.85
+4      2074.85
+        ...   
+113        NaN
+114        NaN
+115        NaN
+116        NaN
+117        NaN
+Name: MeltingPoint, Length: 118, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>To save your calculation in a new column in your dataframe,
+use the syntax</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_column_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">CALCULATION</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;MeltingPointC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;MeltingPoint&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mf">273.15</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you have a more complicated action you’d like to peform for every column, you can use the syntax</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;column_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">FUNCTION</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where FUNCTION is a function that exists (like <code class="docutils literal notranslate"><span class="pre">len</span></code>) or a function that you’ve defined.
+Consider a function to calculate the temperature in Farhenheit from Celsius.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kelvin_to_fahrenheit</span><span class="p">(</span><span class="n">kelvin_temp</span><span class="p">):</span>
+    <span class="n">fahrenheit</span> <span class="o">=</span> <span class="p">(</span><span class="n">kelvin_temp</span> <span class="o">-</span> <span class="mf">273.15</span><span class="p">)</span> <span class="o">*</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span> <span class="o">+</span><span class="mi">32</span>
+    <span class="k">return</span> <span class="n">fahrenheit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you wanted to apply this function to every row, your first instinct might be to write a for loop. This would work, but pandas has a built in method called <code class="docutils literal notranslate"><span class="pre">apply</span></code> to easily allow you to do this.</p>
+<p>When you call the apply method, you give it a function name which you would like to apply to every element of whatever you are using it on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the boiling point in fahrenheit</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;BoilingPoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">kelvin_to_fahrenheit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      -423.166
+1      -452.074
+2      2447.330
+3      4479.530
+4      7231.730
+         ...   
+113         NaN
+114         NaN
+115         NaN
+116         NaN
+117         NaN
+Name: BoilingPoint, Length: 118, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="saving-a-new-dataframe">
+<h2>Saving a new DataFrame<a class="headerlink" href="#saving-a-new-dataframe" title="Permalink to this heading">#</a></h2>
+<p>If you wanted to save your data to a csv, you could do it using the method <code class="docutils literal notranslate"><span class="pre">to_csv</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;periodic_data_processed.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filtering-data">
+<h2>Filtering Data<a class="headerlink" href="#filtering-data" title="Permalink to this heading">#</a></h2>
+<p>We can also filter data using signs like greater than <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, less than <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, or equal to <code class="docutils literal notranslate"><span class="pre">==</span></code>.</p>
+<p>In the cell below, we check whether or not each boiling point is greater than 500.
+If it is, <code class="docutils literal notranslate"><span class="pre">True</span></code> is returned, if not <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;BoilingPoint&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      False
+1      False
+2       True
+3       True
+4       True
+       ...  
+113    False
+114    False
+115    False
+116    False
+117    False
+Name: BoilingPoint, Length: 118, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use this as an index or slice, similar to how we learned with lists.
+We can see from the output that this gives us 80 elements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;BoilingPoint&quot;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">500</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AtomicNumber</th>
+      <th>Symbol</th>
+      <th>Name</th>
+      <th>AtomicMass</th>
+      <th>CPKHexColor</th>
+      <th>ElectronConfiguration</th>
+      <th>Electronegativity</th>
+      <th>AtomicRadius</th>
+      <th>IonizationEnergy</th>
+      <th>ElectronAffinity</th>
+      <th>OxidationStates</th>
+      <th>StandardState</th>
+      <th>MeltingPoint</th>
+      <th>BoilingPoint</th>
+      <th>Density</th>
+      <th>GroupBlock</th>
+      <th>YearDiscovered</th>
+      <th>MeltingPointC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Li</td>
+      <td>Lithium</td>
+      <td>7.000000</td>
+      <td>CC80FF</td>
+      <td>[He]2s1</td>
+      <td>0.98</td>
+      <td>182.0</td>
+      <td>5.392</td>
+      <td>0.618</td>
+      <td>+1</td>
+      <td>Solid</td>
+      <td>453.65</td>
+      <td>1615.0</td>
+      <td>0.534</td>
+      <td>Alkali metal</td>
+      <td>1817</td>
+      <td>180.50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Be</td>
+      <td>Beryllium</td>
+      <td>9.012183</td>
+      <td>C2FF00</td>
+      <td>[He]2s2</td>
+      <td>1.57</td>
+      <td>153.0</td>
+      <td>9.323</td>
+      <td>NaN</td>
+      <td>+2</td>
+      <td>Solid</td>
+      <td>1560.00</td>
+      <td>2744.0</td>
+      <td>1.850</td>
+      <td>Alkaline earth metal</td>
+      <td>1798</td>
+      <td>1286.85</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>B</td>
+      <td>Boron</td>
+      <td>10.810000</td>
+      <td>FFB5B5</td>
+      <td>[He]2s2 2p1</td>
+      <td>2.04</td>
+      <td>192.0</td>
+      <td>8.298</td>
+      <td>0.277</td>
+      <td>+3</td>
+      <td>Solid</td>
+      <td>2348.00</td>
+      <td>4273.0</td>
+      <td>2.370</td>
+      <td>Metalloid</td>
+      <td>1808</td>
+      <td>2074.85</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>C</td>
+      <td>Carbon</td>
+      <td>12.011000</td>
+      <td>909090</td>
+      <td>[He]2s2 2p2</td>
+      <td>2.55</td>
+      <td>170.0</td>
+      <td>11.260</td>
+      <td>1.263</td>
+      <td>+4, +2, -4</td>
+      <td>Solid</td>
+      <td>3823.00</td>
+      <td>4098.0</td>
+      <td>2.267</td>
+      <td>Nonmetal</td>
+      <td>Ancient</td>
+      <td>3549.85</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>Na</td>
+      <td>Sodium</td>
+      <td>22.989769</td>
+      <td>AB5CF2</td>
+      <td>[Ne]3s1</td>
+      <td>0.93</td>
+      <td>227.0</td>
+      <td>5.139</td>
+      <td>0.548</td>
+      <td>+1</td>
+      <td>Solid</td>
+      <td>370.95</td>
+      <td>1156.0</td>
+      <td>0.970</td>
+      <td>Alkali metal</td>
+      <td>1807</td>
+      <td>97.80</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>92</td>
+      <td>U</td>
+      <td>Uranium</td>
+      <td>238.028900</td>
+      <td>008FFF</td>
+      <td>[Rn]7s2 5f3 6d1</td>
+      <td>1.38</td>
+      <td>240.0</td>
+      <td>6.194</td>
+      <td>NaN</td>
+      <td>+6, +5, +4, +3</td>
+      <td>Solid</td>
+      <td>1408.00</td>
+      <td>4404.0</td>
+      <td>18.950</td>
+      <td>Actinide</td>
+      <td>1789</td>
+      <td>1134.85</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>93</td>
+      <td>Np</td>
+      <td>Neptunium</td>
+      <td>237.048170</td>
+      <td>0080FF</td>
+      <td>[Rn]7s2 5f4 6d1</td>
+      <td>1.36</td>
+      <td>221.0</td>
+      <td>6.266</td>
+      <td>NaN</td>
+      <td>+6, +5, +4, +3</td>
+      <td>Solid</td>
+      <td>917.00</td>
+      <td>4175.0</td>
+      <td>20.250</td>
+      <td>Actinide</td>
+      <td>1940</td>
+      <td>643.85</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>94</td>
+      <td>Pu</td>
+      <td>Plutonium</td>
+      <td>244.064200</td>
+      <td>006BFF</td>
+      <td>[Rn]7s2 5f6</td>
+      <td>1.28</td>
+      <td>243.0</td>
+      <td>6.060</td>
+      <td>NaN</td>
+      <td>+6, +5, +4, +3</td>
+      <td>Solid</td>
+      <td>913.00</td>
+      <td>3501.0</td>
+      <td>19.840</td>
+      <td>Actinide</td>
+      <td>1940</td>
+      <td>639.85</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>95</td>
+      <td>Am</td>
+      <td>Americium</td>
+      <td>243.061380</td>
+      <td>545CF2</td>
+      <td>[Rn]7s2 5f7</td>
+      <td>1.30</td>
+      <td>244.0</td>
+      <td>5.993</td>
+      <td>NaN</td>
+      <td>+6, +5, +4, +3</td>
+      <td>Solid</td>
+      <td>1449.00</td>
+      <td>2284.0</td>
+      <td>13.690</td>
+      <td>Actinide</td>
+      <td>1944</td>
+      <td>1175.85</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>96</td>
+      <td>Cm</td>
+      <td>Curium</td>
+      <td>247.070350</td>
+      <td>785CE3</td>
+      <td>[Rn]7s2 5f7 6d1</td>
+      <td>1.30</td>
+      <td>245.0</td>
+      <td>6.020</td>
+      <td>NaN</td>
+      <td>+3</td>
+      <td>Solid</td>
+      <td>1618.00</td>
+      <td>3400.0</td>
+      <td>13.510</td>
+      <td>Actinide</td>
+      <td>1944</td>
+      <td>1344.85</td>
+    </tr>
+  </tbody>
+</table>
+<p>80 rows × 18 columns</p>
+</div></div></div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Create a filter for elements having a melting point below 100.</p>
+</div></section>
+<section id="grouping-data">
+<h2>Grouping Data<a class="headerlink" href="#grouping-data" title="Permalink to this heading">#</a></h2>
+<p>You can perform operations like grouping data by category using pands.
+For this analysis, we will group elements by their standard state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;StandardState&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is now essentially a group of dataframes.
+If we use <code class="docutils literal notranslate"><span class="pre">describe</span></code>, we will get separate statistics for each group.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="8" halign="left">AtomicNumber</th>
+      <th colspan="2" halign="left">AtomicMass</th>
+      <th>...</th>
+      <th colspan="2" halign="left">Density</th>
+      <th colspan="8" halign="left">MeltingPointC</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+      <th>count</th>
+      <th>mean</th>
+      <th>...</th>
+      <th>75%</th>
+      <th>max</th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>StandardState</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Expected to be a Gas</th>
+      <td>1.0</td>
+      <td>118.000000</td>
+      <td>NaN</td>
+      <td>118.0</td>
+      <td>118.00</td>
+      <td>118.0</td>
+      <td>118.00</td>
+      <td>118.0</td>
+      <td>1.0</td>
+      <td>294.214000</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Expected to be a Solid</th>
+      <td>8.0</td>
+      <td>113.500000</td>
+      <td>2.449490</td>
+      <td>110.0</td>
+      <td>111.75</td>
+      <td>113.5</td>
+      <td>115.25</td>
+      <td>117.0</td>
+      <td>8.0</td>
+      <td>287.687125</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Gas</th>
+      <td>11.0</td>
+      <td>22.545455</td>
+      <td>26.322476</td>
+      <td>1.0</td>
+      <td>7.50</td>
+      <td>10.0</td>
+      <td>27.00</td>
+      <td>86.0</td>
+      <td>11.0</td>
+      <td>53.332053</td>
+      <td>...</td>
+      <td>0.003474</td>
+      <td>0.00973</td>
+      <td>11.0</td>
+      <td>-187.244545</td>
+      <td>67.941536</td>
+      <td>-272.20</td>
+      <td>-234.1050</td>
+      <td>-210.000</td>
+      <td>-134.5750</td>
+      <td>-71.15</td>
+    </tr>
+    <tr>
+      <th>Liquid</th>
+      <td>2.0</td>
+      <td>57.500000</td>
+      <td>31.819805</td>
+      <td>35.0</td>
+      <td>46.25</td>
+      <td>57.5</td>
+      <td>68.75</td>
+      <td>80.0</td>
+      <td>2.0</td>
+      <td>140.245000</td>
+      <td>...</td>
+      <td>10.927700</td>
+      <td>13.53360</td>
+      <td>2.0</td>
+      <td>-23.015000</td>
+      <td>22.365787</td>
+      <td>-38.83</td>
+      <td>-30.9225</td>
+      <td>-23.015</td>
+      <td>-15.1075</td>
+      <td>-7.20</td>
+    </tr>
+    <tr>
+      <th>Solid</th>
+      <td>96.0</td>
+      <td>58.666667</td>
+      <td>30.275808</td>
+      <td>3.0</td>
+      <td>32.75</td>
+      <td>59.5</td>
+      <td>84.25</td>
+      <td>109.0</td>
+      <td>96.0</td>
+      <td>144.133827</td>
+      <td>...</td>
+      <td>11.171000</td>
+      <td>22.57000</td>
+      <td>90.0</td>
+      <td>1168.517189</td>
+      <td>823.705160</td>
+      <td>26.85</td>
+      <td>640.8500</td>
+      <td>1050.350</td>
+      <td>1552.3875</td>
+      <td>3549.85</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 80 columns</p>
+</div></div></div>
+</div>
+<p>Similarly, we can see statistics for each group when using a method like <code class="docutils literal notranslate"><span class="pre">.mean()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_data</span><span class="p">[</span><span class="s2">&quot;BoilingPoint&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StandardState
+Expected to be a Gas              NaN
+Expected to be a Solid            NaN
+Gas                        102.452727
+Liquid                     480.915000
+Solid                     2922.236875
+Name: BoilingPoint, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Group elements by GroupBlock and calculate statistics.</p>
+<p>After grouping, select the electronegativity data. Are the trends what you would expect?</p>
+</div></section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python-basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="visualization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Interactive Visualization with Plotly</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-libraries">Importing Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-data">Examining the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-data-in-dataframes">Accessing Data in DataFrames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-using-number-index">Get data using number index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-calculations">Performing Calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-a-new-dataframe">Saving a new DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-data">Filtering Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping-data">Grouping Data</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/notebooks/pandas.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="../_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="../_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="../_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

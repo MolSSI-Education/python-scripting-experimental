@@ -14,7 +14,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'python-scripting-chemists'
+project = 'python-scripting-experimental'
 copyright = ("2023, The Molecular Sciences Software Institute")
 author = 'Jessica Nash'
 
@@ -109,7 +109,7 @@ html_theme_options = {
 	"logo": {
       "image_light": "molssi_main_logo.png",
       "image_dark": "molssi_main_logo_inverted_white.png",
-      "text": "Python for Chemists",
+      "text": "Python for Experimental Chemists",
       "molssi_light": "molssi_main_logo.png",
       "molssi_dark": "molssi_main_logo_inverted_white.png",
     },
@@ -123,11 +123,14 @@ html_theme_options = {
     "footer_start": [ "molssi_footer" ],
     "footer_end": [],
     "icon_links": [],
+    "navbar_align": "left",
 }
 
 html_theme_options["analytics"] = {
     "google_analytics_id": "G-FHKVGE8HKZ",
 }
+
+#html_sidebars = {}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

@@ -7,7 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - python-scripting-experimental  documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Python Basics &#8212; python-scripting-experimental  documentation</title>
   
   
   
@@ -54,15 +56,14 @@
                 gtag('js', new Date());
                 gtag('config', 'G-FHKVGE8HKZ');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'basics';</script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
     <link rel="shortcut icon" href="_static/molssi_square.png"/>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to Python" href="python-basics.html" />
+    <link rel="prev" title="Set Up" href="setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -99,7 +100,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -169,8 +170,8 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="basics.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Python Basics
                       </a>
                     </li>
@@ -269,6 +270,10 @@ document.write(`
   
 
   
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
 </div>
 
     </nav>
@@ -276,7 +281,7 @@ document.write(`
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -301,8 +306,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="basics.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Python Basics
                       </a>
                     </li>
@@ -373,6 +378,19 @@ document.write(`
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-basics.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">Introduction to Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Interactive Visualization with Plotly</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
@@ -388,46 +406,79 @@ document.write(`
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article"></div>
-              
-              
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search the docs ..."
-         aria-label="Search the docs ..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
-    }
-  </script>
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
 
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Python Basics</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-basics">
+<h1>Python Basics<a class="headerlink" href="#python-basics" title="Permalink to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python-basics.html">Introduction to Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#what-is-python-and-why-use-it">What is Python and why use it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#python-in-science">Python in Science</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#our-first-python-code">Our First Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#assigning-variables">Assigning variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#jupyterlab-the-tab-key">JupyterLab: The <code class="docutils literal notranslate"><span class="pre">tab</span></code> key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#using-functions">Using Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#overwriting-variables">Overwriting Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-basics.html#lists">Lists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="python-basics.html#slices">Slices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">Introduction to Pandas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html#importing-libraries">Importing Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html#examining-the-data">Examining the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html#accessing-data-in-dataframes">Accessing Data in DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html#get-data-using-number-index">Get data using number index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html#performing-calculations">Performing Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html#saving-a-new-dataframe">Saving a new DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html#filtering-data">Filtering Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html#grouping-data">Grouping Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Interactive Visualization with Plotly</a></li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
               
               
               
@@ -435,12 +486,42 @@ document.write(`
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Set Up</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="python-basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/basics.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
               
             
           </div>

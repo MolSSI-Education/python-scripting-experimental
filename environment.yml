@@ -11,6 +11,7 @@ dependencies:
   - scipy
   - jupyterlab
   - rdkit
+  - statsmodels
   - scikit-learn
   - pydata-sphinx-theme
   - sphinx-design

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Introduction to Python &#8212; python-scripting-experimental  documentation</title>
   
@@ -19,37 +18,40 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b3c15e6d" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHKVGE8HKZ"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHKVGE8HKZ');
+            </script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -59,7 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'python-basics';</script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <link rel="shortcut icon" href="_static/molssi_square.png"/>
+    <link rel="icon" href="_static/molssi_square.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Introduction to Pandas" href="pandas.html" />
@@ -73,10 +75,9 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -117,7 +118,7 @@
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
@@ -127,6 +128,7 @@
   <div class=" navbar-header-items__start">
     
       <div class="navbar-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -154,13 +156,8 @@
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
@@ -200,6 +197,7 @@
       
         <div class="navbar-item navbar-persistent--container">
           
+
  <script>
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -213,6 +211,7 @@
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -257,6 +256,7 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
+
  <script>
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -276,10 +276,13 @@ document.write(`
   
 </div>
 
-    </nav>
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -290,13 +293,8 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          <div class="navbar-item">
+<nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
@@ -336,6 +334,7 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -379,7 +378,8 @@ document.write(`
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
@@ -441,10 +441,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-python">
-<h1>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this heading">#</a></h1>
+<h1>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Link to this heading">#</a></h1>
 <div class="overview admonition">
 <p class="admonition-title">Overview</p>
 <p>Questions:</p>
@@ -460,7 +460,7 @@ document.write(`
 </ul>
 </div>
 <section id="what-is-python-and-why-use-it">
-<h2>What is Python and why use it?<a class="headerlink" href="#what-is-python-and-why-use-it" title="Permalink to this heading">#</a></h2>
+<h2>What is Python and why use it?<a class="headerlink" href="#what-is-python-and-why-use-it" title="Link to this heading">#</a></h2>
 <p>All of the software you use on a regular basis is created through the use of programming languages.
 Programming languages allow us to write instructions to a computer.
 There are many different programming languages, each with their own strengths, weaknesses, and uses.
@@ -474,7 +474,7 @@ This means anyone can download, install, and use Python.
 Python can be used to build web applications, interact with databases, and and to analyze data.</p>
 </section>
 <section id="python-in-science">
-<h2>Python in Science<a class="headerlink" href="#python-in-science" title="Permalink to this heading">#</a></h2>
+<h2>Python in Science<a class="headerlink" href="#python-in-science" title="Link to this heading">#</a></h2>
 <p>Python is used in many different scientific fields, including chemistry, physics, biology, and astronomy.
 Python is used in scientific programming for a variety of reasons, including:</p>
 <ul class="simple">
@@ -491,7 +491,7 @@ For example, there are many libraries for reading and writing chemical file form
 For experimental chemists, there are libraries for <a class="reference external" href="https://github.com/jjhelmus/nmrglue">working with and analyzing NMR spectra</a>.</p>
 </section>
 <section id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h2>
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <p>Our initial lessons will run python interactively through a Python interpreter.
 We will use an environment called a Jupyter notebook.
 The Jupyter notebook is an environment in your browser that can be used to write an execute Python code interactively.
@@ -511,7 +511,7 @@ In markdown, for example, a first level heading is denoted by</p>
 Try adding some subheadings (<code class="docutils literal notranslate"><span class="pre">##</span></code>) or bullet points yourself!</p>
 </section>
 <section id="our-first-python-code">
-<h2>Our First Python Code<a class="headerlink" href="#our-first-python-code" title="Permalink to this heading">#</a></h2>
+<h2>Our First Python Code<a class="headerlink" href="#our-first-python-code" title="Link to this heading">#</a></h2>
 <p>Any Python interpreter can work just like a calculator.
 This is not very useful.
 Press the Shift Key and the Enter Key (<code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code>) at the same time to run (also called “execute”) the code in a cell.
@@ -530,7 +530,7 @@ The following cell contains an expression to calculate <code class="docutils lit
 </div>
 </section>
 <section id="assigning-variables">
-<h2>Assigning variables<a class="headerlink" href="#assigning-variables" title="Permalink to this heading">#</a></h2>
+<h2>Assigning variables<a class="headerlink" href="#assigning-variables" title="Link to this heading">#</a></h2>
 <p>Python can perform calculations for us.
 To save this value, or other values, we assign them to a variable for later use.
 Variable <strong>assignment</strong> is the technical term for doing this.
@@ -572,7 +572,7 @@ Comments are also often used to explain what the code is doing or leave informat
 </div>
 </section>
 <section id="jupyterlab-the-tab-key">
-<h2>JupyterLab: The <code class="docutils literal notranslate"><span class="pre">tab</span></code> key<a class="headerlink" href="#jupyterlab-the-tab-key" title="Permalink to this heading">#</a></h2>
+<h2>JupyterLab: The <code class="docutils literal notranslate"><span class="pre">tab</span></code> key<a class="headerlink" href="#jupyterlab-the-tab-key" title="Link to this heading">#</a></h2>
 <p>Jupyter notebooks allow autocomplete using the tab key.
 To test this out, try typing <code class="docutils literal notranslate"><span class="pre">pri</span></code> in the cell below, then press <code class="docutils literal notranslate"><span class="pre">tab</span></code> on your keyboard twice.
 You should see that the word <code class="docutils literal notranslate"><span class="pre">print</span></code> is completed for you.</p>
@@ -581,7 +581,7 @@ You will see a list of potential variables or functions you might want to use.
 You can use the arrows + the Enter key to select the variable you would like to use.</p>
 </section>
 <section id="using-functions">
-<h2>Using Functions<a class="headerlink" href="#using-functions" title="Permalink to this heading">#</a></h2>
+<h2>Using Functions<a class="headerlink" href="#using-functions" title="Link to this heading">#</a></h2>
 <p>When we use <code class="docutils literal notranslate"><span class="pre">print</span></code>, we are using a <code class="docutils literal notranslate"><span class="pre">function</span></code>.
 Functions are reusable pieces of code that perform certain tasks.
 Examples include printing, opening files, performing a calculations, and many others.
@@ -592,7 +592,7 @@ Functions have a name that is followed by parenthesis containing the function in
 <p>In the previous code block, we introduced the <code class="docutils literal notranslate"><span class="pre">print</span></code> function. Often, we will use the print function just to make sure our code is working correctly.</p>
 </section>
 <section id="overwriting-variables">
-<h2>Overwriting Variables<a class="headerlink" href="#overwriting-variables" title="Permalink to this heading">#</a></h2>
+<h2>Overwriting Variables<a class="headerlink" href="#overwriting-variables" title="Link to this heading">#</a></h2>
 <p>Note that if you do not specify a new name for a variable, then it doesn’t automatically change the value of the variable. For example if we typed</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -645,7 +645,7 @@ Functions have a name that is followed by parenthesis containing the function in
 </div>
 </section>
 <section id="data-types">
-<h2>Data Types<a class="headerlink" href="#data-types" title="Permalink to this heading">#</a></h2>
+<h2>Data Types<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h2>
 <p>Each variable is some particular type of data.
 The most common types of data are strings (str),
 integers (int), and floating point numbers (float).
@@ -692,7 +692,7 @@ You can identify the data type of any variable with the function <code class="do
 </div>
 </section>
 <section id="lists">
-<h2>Lists<a class="headerlink" href="#lists" title="Permalink to this heading">#</a></h2>
+<h2>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h2>
 <p>Another common data structure in Python is the list. Lists can be used to group several values or variables together.
 For today’s workshop, we will be using a more complicated data structure that is part of the pandas library.
 However, they share many attributes with lists.
@@ -759,7 +759,7 @@ The maximum of the energy values is 42.1
 </div>
 </div>
 <section id="slices">
-<h3>Slices<a class="headerlink" href="#slices" title="Permalink to this heading">#</a></h3>
+<h3>Slices<a class="headerlink" href="#slices" title="Link to this heading">#</a></h3>
 <p>Sometimes you will want to make a new list that is a subset of an existing list. For example, we might want to make a new list that is just the first few elements of our previous list. This is called a slice. The general syntax is</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="n">list_name</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
 </pre></div>
@@ -812,7 +812,7 @@ It contains much of what is contained here, plus more details on fundamental pro
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="basics.html"
@@ -841,11 +841,14 @@ It contains much of what is contained here, plus more details on fundamental pro
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-python-and-why-use-it">What is Python and why use it?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-in-science">Python in Science</a></li>
@@ -864,6 +867,7 @@ It contains much of what is contained here, plus more details on fundamental pro
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="_sources/python-basics.ipynb.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -884,8 +888,8 @@ It contains much of what is contained here, plus more details on fundamental pro
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -921,12 +925,12 @@ It contains much of what is contained here, plus more details on fundamental pro
  
         
         <p class="sphinx-version">
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
         </p>
         
 
         <p class="theme-version">
-        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
         </p>
 
     </div>
